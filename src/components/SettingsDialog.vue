@@ -58,6 +58,18 @@
         </v-text-field>
       </v-card-text>
 
+      <v-card-text>
+        <i18n path="settingsDialog.opmlImport" tag="span">
+          <a href="https://www.youtube.com/subscription_manager?action_takeout=1" target="_blank">{{ $t('settingsDialog.youtubeOpmlExport') }}</a>
+        </i18n>:
+
+        <v-file-input
+            v-model="opmlImport"
+            accept="application/xml"
+          >
+        </v-file-input>
+      </v-card-text>
+
       <v-divider/>
       <v-card-actions>
         <v-spacer/>
@@ -125,6 +137,15 @@ export default {
 
       set(value) {
         this.$store.dispatch('updateConfig', { customVideoLinkProvider: value });
+      },
+    },
+    opmlImport: {
+      get() {
+        return [];
+      },
+
+      set(value) {
+        this.$store.dispatch('importOpml', { opmlImport: value });
       },
     },
   },
